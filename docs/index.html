@@ -6,10 +6,17 @@
     <title>ShoppingTogether - La Rivoluzione degli Acquisti di Gruppo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/moon.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css">
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
         .reveal {
             height: 100vh;
+            position: relative;
         }
         .slides {
             height: 100%;
@@ -109,12 +116,25 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/zoom/zoom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/search/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
     <script>
         Reveal.initialize({
             hash: true,
             center: true,
             progress: true,
-            controls: true
+            controls: true,
+            controlsTutorial: true,
+            controlsLayout: 'bottom-right',
+            controlsBackArrows: 'faded',
+            slideNumber: true,
+            showSlideNumber: 'all',
+            keyboard: true,
+            overview: true,
+            touch: true,
+            plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown ]
         });
     </script>
 </body>
