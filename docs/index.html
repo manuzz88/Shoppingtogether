@@ -40,47 +40,54 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 0;
-            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 100%;
         }
-        
+
         .reveal h1 {
-            color: var(--main-color);
-            text-transform: uppercase;
-            font-size: 2.5em;
+            font-size: 3.5em;
             margin: 0;
-            padding: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            white-space: nowrap;
-            font-family: 'Montserrat', sans-serif;
+            padding: 20px;
             width: 100%;
-            text-align: center;
-        }
-        
-        .title-slide h1 {
-            font-size: 5vw;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            margin: 0;
-            padding: 0 20px;
-            word-break: break-word;
+            box-sizing: border-box;
+            word-wrap: break-word;
+            hyphens: none;
+            overflow-wrap: break-word;
             white-space: normal;
-            width: 100%;
+        }
+
+        .title-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            padding: 0 20px;
+        }
+
+        .title-slide h1 {
+            font-size: 4.5vw;
+            line-height: 1.2;
+            margin: 0 0 20px 0;
+            padding: 0;
+            width: 100%;
+            max-width: 90%;
+            word-wrap: break-word;
+            hyphens: none;
+            white-space: normal;
         }
 
         .title-slide h3 {
-            margin: 0.5em 0;
+            font-size: 2.5vw;
+            line-height: 1.4;
+            margin: 20px 0;
+            padding: 0;
+            width: 100%;
+            max-width: 80%;
         }
-        
-        .title-slide p {
-            margin: 0.5em 0;
-        }
-        
+
         .reveal h2 {
             color: var(--accent-color);
             font-size: 1.8em;
@@ -233,263 +240,123 @@
 
         .reveal .controls {
             position: fixed !important;
-            bottom: 10px !important;
-            right: 10px !important;
-            z-index: 1000 !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            display: flex !important;
-            pointer-events: auto !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            display: grid !important;
+            grid-template-columns: repeat(3, auto) !important;
+            grid-template-rows: repeat(3, auto) !important;
             gap: 5px !important;
+            width: auto !important;
+            height: auto !important;
+            transform: scale(0.9) !important;
         }
 
         .reveal .controls button {
-            position: relative !important;
-            display: block !important;
-            visibility: visible !important;
-            opacity: 0.8 !important;
-            cursor: pointer !important;
-            background: rgba(0, 0, 0, 0.6) !important;
-            border: 1px solid var(--accent-color) !important;
-            padding: 0 !important;
-            width: 36px !important;
-            height: 36px !important;
-            margin: 2px !important;
-            border-radius: 50% !important;
-            transition: all 0.2s ease !important;
-            color: var(--accent-color) !important;
-            font-size: 18px !important;
+            display: none !important;
+        }
+
+        .reveal .controls button.enabled {
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
+            width: 40px !important;
+            height: 40px !important;
+            padding: 8px !important;
+            margin: 0 !important;
+            border-radius: 50% !important;
+            background: rgba(0, 0, 0, 0.6) !important;
+            border: 1px solid var(--accent-color) !important;
+            color: var(--accent-color) !important;
+            font-size: 20px !important;
+            opacity: 0.8 !important;
+            transition: all 0.2s ease !important;
         }
 
-        .reveal .controls button:hover {
+        .reveal .controls button.enabled:hover {
             opacity: 1 !important;
-            background: rgba(0, 0, 0, 0.8) !important;
             transform: scale(1.1) !important;
         }
 
         .reveal .controls .navigate-left {
-            left: 0 !important;
+            grid-column: 1;
+            grid-row: 2;
         }
 
         .reveal .controls .navigate-right {
-            right: 0 !important;
+            grid-column: 3;
+            grid-row: 2;
         }
 
         .reveal .controls .navigate-up {
-            top: 0 !important;
+            grid-column: 2;
+            grid-row: 1;
         }
 
         .reveal .controls .navigate-down {
-            bottom: 0 !important;
-        }
-
-        /* Stili specifici per mobile */
-        @media screen and (max-width: 768px) {
-            .reveal .controls {
-                bottom: 15px !important;
-                right: 15px !important;
-                transform: scale(0.9) !important;
-            }
-
-            .reveal .controls button {
-                width: 32px !important;
-                height: 32px !important;
-                font-size: 16px !important;
-                margin: 1px !important;
-            }
-        }
-
-        /* Stili per schermi molto piccoli */
-        @media screen and (max-width: 480px) {
-            .reveal .controls {
-                bottom: 10px !important;
-                right: 10px !important;
-                transform: scale(0.8) !important;
-            }
-
-            .reveal .controls button {
-                width: 30px !important;
-                height: 30px !important;
-                font-size: 14px !important;
-            }
+            grid-column: 2;
+            grid-row: 3;
         }
 
         /* Stili specifici per mobile */
         @media screen and (max-width: 768px) {
             .reveal .slides section {
-                padding: 10px !important;
-            }
-
-            .title-slide h1 {
-                font-size: 11vw !important;
-                padding: 0 20px;
-                line-height: 1.2;
-                position: absolute;
-                top: 40%;
-                transform: translate(-50%, -50%);
-                width: 90%;
-            }
-
-            .title-slide h3 {
-                font-size: 6vw !important;
-                padding: 0 20px;
-                position: absolute;
-                top: 60%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 90%;
-                text-align: center;
-            }
-
-            .title-slide {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                position: relative;
-            }
-
-            .reveal h1 {
-                font-size: 10vw !important;
-                line-height: 1.2;
-                padding: 0 15px;
-            }
-
-            .reveal h2 {
-                font-size: 8vw !important;
-                line-height: 1.2;
-                padding: 0 15px;
-                margin-bottom: 20px;
-            }
-
-            .reveal h3 {
-                font-size: 7vw !important;
-                line-height: 1.3;
-                padding: 0 15px;
-                margin-bottom: 15px;
-            }
-
-            .reveal p {
-                font-size: 5vw !important;
-                line-height: 1.4;
-                padding: 0 20px;
-                margin-bottom: 15px;
-            }
-
-            .reveal li {
-                font-size: 5vw !important;
-                line-height: 1.4;
-                padding: 0 20px 0 40px;
-                margin-bottom: 12px;
-            }
-
-            .reveal li:before {
-                font-size: 5vw !important;
-                left: 15px;
-            }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-                width: 90%;
-                gap: 20px;
-                padding: 0 15px;
-            }
-
-            .feature-item {
                 padding: 15px;
             }
 
-            .feature-item h3 {
-                font-size: 6vw !important;
-                margin-bottom: 10px;
-            }
-
-            .feature-item p {
-                font-size: 5vw !important;
-                line-height: 1.4;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-                width: 90%;
-                gap: 25px;
+            .title-slide h1 {
+                font-size: 7vw;
+                margin-bottom: 15px;
                 padding: 0 15px;
             }
 
-            .team-member h3 {
-                font-size: 6vw !important;
-                margin: 10px 0;
+            .title-slide h3 {
+                font-size: 4vw;
+                margin: 15px 0;
+                padding: 0 15px;
             }
 
-            .team-member p {
-                font-size: 5vw !important;
+            .reveal .controls {
+                bottom: 15px !important;
+                right: 15px !important;
+                transform: scale(0.8) !important;
             }
 
-            .menu-title {
-                font-size: 5vw !important;
-                padding: 10px 20px;
-            }
-
-            #slide-menu a {
-                font-size: 5vw !important;
-                padding: 15px 20px;
+            .reveal .controls button {
+                width: 35px !important;
+                height: 35px !important;
+                padding: 6px !important;
             }
         }
 
         @media screen and (max-width: 480px) {
+            .reveal .slides section {
+                padding: 10px;
+            }
+
             .title-slide h1 {
-                font-size: 9vw !important;
-                top: 35%;
+                font-size: 8vw;
+                line-height: 1.1;
+                margin-bottom: 10px;
+                padding: 0 10px;
             }
 
             .title-slide h3 {
-                font-size: 5vw !important;
-                top: 65%;
-                line-height: 1.4;
+                font-size: 5vw;
+                line-height: 1.3;
+                margin: 10px 0;
+                padding: 0 10px;
             }
 
-            .reveal h1 {
-                font-size: 12vw !important;
+            .reveal .controls {
+                bottom: 10px !important;
+                right: 10px !important;
+                transform: scale(0.7) !important;
             }
 
-            .reveal h2 {
-                font-size: 10vw !important;
-            }
-
-            .reveal h3 {
-                font-size: 8vw !important;
-            }
-
-            .reveal p, .reveal li {
-                font-size: 6vw !important;
-            }
-
-            .feature-item h3 {
-                font-size: 7vw !important;
-            }
-
-            .feature-item p {
-                font-size: 6vw !important;
-            }
-
-            .team-member h3 {
-                font-size: 7vw !important;
-            }
-
-            .team-member p {
-                font-size: 6vw !important;
-            }
-
-            .menu-title {
-                font-size: 6vw !important;
-            }
-
-            #slide-menu a {
-                font-size: 6vw !important;
+            .reveal .controls button {
+                width: 30px !important;
+                height: 30px !important;
+                padding: 5px !important;
             }
         }
     </style>
@@ -656,7 +523,7 @@
             center: true,
             progress: true,
             controls: true,
-            controlsTutorial: true,
+            controlsTutorial: false,
             controlsLayout: 'bottom-right',
             controlsBackArrows: 'visible',
             slideNumber: true,
@@ -669,6 +536,16 @@
             embedded: false,
             hideInactiveCursor: false,
             hideCursorTime: 0,
+            navigationMode: 'linear',
+            fragments: false,
+            fragmentInURL: false,
+            help: false,
+            mouseWheel: false,
+            previewLinks: false,
+            autoSlide: 0,
+            autoSlideStoppable: true,
+            autoSlideMethod: null,
+            defaultTiming: null,
             plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown ],
             mobileViewDistance: 2,
             margin: 0,
@@ -707,6 +584,39 @@
                 menu.classList.remove('active');
             }
         });
+
+        // Nascondi le frecce non utilizzabili
+        Reveal.addEventListener('ready', function(event) {
+            updateNavigationControls();
+        });
+
+        Reveal.addEventListener('slidechanged', function(event) {
+            updateNavigationControls();
+        });
+
+        function updateNavigationControls() {
+            var indices = Reveal.getIndices();
+            var totalSlides = Reveal.getTotalSlides();
+            var controls = document.querySelector('.reveal .controls');
+            
+            if (controls) {
+                var upButton = controls.querySelector('.navigate-up');
+                var downButton = controls.querySelector('.navigate-down');
+                var leftButton = controls.querySelector('.navigate-left');
+                var rightButton = controls.querySelector('.navigate-right');
+
+                if (upButton) upButton.style.display = 'none';
+                if (downButton) downButton.style.display = 'none';
+                
+                if (indices.h === 0) {
+                    if (leftButton) leftButton.style.display = 'none';
+                }
+                
+                if (indices.h === totalSlides - 1) {
+                    if (rightButton) rightButton.style.display = 'none';
+                }
+            }
+        }
     </script>
 </body>
 </html>
