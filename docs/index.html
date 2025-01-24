@@ -78,8 +78,10 @@
             line-height: 1.2;
             width: 90%;
             max-width: 800px;
-            word-wrap: break-word;
+            white-space: nowrap;
             text-align: center;
+            transform: scale(1);
+            transform-origin: center center;
         }
 
         .title-slide h3 {
@@ -99,10 +101,12 @@
             }
 
             .title-slide h1 {
-                font-size: min(8vw, 40px);
+                font-size: min(7vw, 40px);
                 margin: 0 0 16px 0;
                 letter-spacing: 1px;
                 width: 95%;
+                white-space: normal;
+                word-spacing: 100vw;
             }
 
             .title-slide h3 {
@@ -117,10 +121,11 @@
             }
 
             .title-slide h1 {
-                font-size: min(10vw, 32px);
+                font-size: min(6vw, 32px);
                 margin: 0 0 12px 0;
                 letter-spacing: 0.5px;
                 line-height: 1.1;
+                transform: scale(0.9);
             }
 
             .title-slide h3 {
