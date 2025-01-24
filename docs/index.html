@@ -61,9 +61,18 @@
             font-size: 5vw;
             letter-spacing: -0.02em;
             line-height: 1;
-            transform: translateY(-20%);
+            margin: 0;
+            padding: 0 20px;
+            word-break: break-word;
+            white-space: normal;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
-        
+
         .title-slide h3 {
             margin: 0.5em 0;
         }
@@ -224,63 +233,88 @@
 
         .reveal .controls {
             position: fixed !important;
-            bottom: 20px !important;
-            right: 20px !important;
+            bottom: 10px !important;
+            right: 10px !important;
             z-index: 1000 !important;
             opacity: 1 !important;
             visibility: visible !important;
             display: flex !important;
             pointer-events: auto !important;
-        }
-
-        .reveal .controls .controls-arrow {
-            position: relative !important;
-            width: 0 !important;
-            height: 0 !important;
+            gap: 5px !important;
         }
 
         .reveal .controls button {
             position: relative !important;
             display: block !important;
             visibility: visible !important;
-            opacity: 1 !important;
+            opacity: 0.8 !important;
             cursor: pointer !important;
-            background: rgba(0, 0, 0, 0.7) !important;
-            border: 2px solid var(--accent-color) !important;
+            background: rgba(0, 0, 0, 0.6) !important;
+            border: 1px solid var(--accent-color) !important;
             padding: 0 !important;
-            width: 45px !important;
-            height: 45px !important;
-            margin: 5px !important;
+            width: 36px !important;
+            height: 36px !important;
+            margin: 2px !important;
             border-radius: 50% !important;
             transition: all 0.2s ease !important;
             color: var(--accent-color) !important;
-            font-size: 24px !important;
+            font-size: 18px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
         }
 
-        .reveal .controls button:after {
-            font-family: 'Arial', sans-serif !important;
-            font-weight: bold !important;
-            position: absolute !important;
-            visibility: visible !important;
+        .reveal .controls button:hover {
+            opacity: 1 !important;
+            background: rgba(0, 0, 0, 0.8) !important;
+            transform: scale(1.1) !important;
         }
 
-        .reveal .controls .navigate-left:after {
-            content: "←" !important;
+        .reveal .controls .navigate-left {
+            left: 0 !important;
         }
 
-        .reveal .controls .navigate-right:after {
-            content: "→" !important;
+        .reveal .controls .navigate-right {
+            right: 0 !important;
         }
 
-        .reveal .controls .navigate-up:after {
-            content: "↑" !important;
+        .reveal .controls .navigate-up {
+            top: 0 !important;
         }
 
-        .reveal .controls .navigate-down:after {
-            content: "↓" !important;
+        .reveal .controls .navigate-down {
+            bottom: 0 !important;
+        }
+
+        /* Stili specifici per mobile */
+        @media screen and (max-width: 768px) {
+            .reveal .controls {
+                bottom: 15px !important;
+                right: 15px !important;
+                transform: scale(0.9) !important;
+            }
+
+            .reveal .controls button {
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 16px !important;
+                margin: 1px !important;
+            }
+        }
+
+        /* Stili per schermi molto piccoli */
+        @media screen and (max-width: 480px) {
+            .reveal .controls {
+                bottom: 10px !important;
+                right: 10px !important;
+                transform: scale(0.8) !important;
+            }
+
+            .reveal .controls button {
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 14px !important;
+            }
         }
 
         /* Stili specifici per mobile */
@@ -290,9 +324,33 @@
             }
 
             .title-slide h1 {
-                font-size: 12vw !important;
-                padding: 0 15px;
+                font-size: 11vw !important;
+                padding: 0 20px;
                 line-height: 1.2;
+                position: absolute;
+                top: 40%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+            }
+
+            .title-slide h3 {
+                font-size: 6vw !important;
+                padding: 0 20px;
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                text-align: center;
+            }
+
+            .title-slide {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                position: relative;
             }
 
             .reveal h1 {
@@ -382,10 +440,16 @@
             }
         }
 
-        /* Stili per schermi molto piccoli */
         @media screen and (max-width: 480px) {
             .title-slide h1 {
-                font-size: 14vw !important;
+                font-size: 9vw !important;
+                top: 35%;
+            }
+
+            .title-slide h3 {
+                font-size: 5vw !important;
+                top: 65%;
+                line-height: 1.4;
             }
 
             .reveal h1 {
