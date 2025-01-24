@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/night.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --main-color: #4CAF50;
             --accent-color: #FF5722;
             --text-color: #FFFFFF;
+            --menu-bg: rgba(0,0,0,0.9);
         }
         
         body {
@@ -19,7 +21,7 @@
             padding: 0;
             height: 100vh;
             overflow: hidden;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            font-family: 'Montserrat', sans-serif;
         }
         
         .reveal {
@@ -33,17 +35,26 @@
             font-size: 2.5em;
             margin-bottom: 0.5em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .title-slide h1 {
+            font-size: calc(5vw + 1rem);
+            letter-spacing: -0.02em;
         }
         
         .reveal h2 {
             color: var(--accent-color);
             font-size: 1.8em;
             margin-bottom: 0.5em;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .reveal h3 {
             color: var(--text-color);
             font-size: 1.4em;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .reveal ul {
@@ -52,9 +63,10 @@
         }
         
         .reveal li {
-            margin: 0.5em 0;
+            margin: 0.8em 0;
             padding-left: 1.5em;
             position: relative;
+            font-size: 1.2em;
         }
         
         .reveal li:before {
@@ -72,30 +84,36 @@
             color: var(--accent-color);
         }
         
-        .slide-background {
-            background-size: cover !important;
-            background-position: center !important;
-            opacity: 0.1;
-        }
-        
         .menu-title {
             position: fixed;
-            top: 10px;
-            left: 10px;
+            top: 20px;
+            left: 20px;
             z-index: 1000;
             color: var(--text-color);
-            font-size: 0.8em;
+            font-size: 1.5em;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            background: var(--menu-bg);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-title:hover {
+            background: var(--main-color);
         }
         
         #slide-menu {
             position: fixed;
-            top: 50px;
-            left: 10px;
+            top: 80px;
+            left: 20px;
             z-index: 1000;
-            background: rgba(0,0,0,0.8);
-            padding: 10px;
-            border-radius: 5px;
+            background: var(--menu-bg);
+            padding: 20px;
+            border-radius: 10px;
             display: none;
+            min-width: 250px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
         #slide-menu.active {
@@ -106,35 +124,78 @@
             color: var(--text-color);
             text-decoration: none;
             display: block;
-            padding: 5px;
+            padding: 10px;
+            font-size: 1.2em;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            border-radius: 5px;
         }
         
         #slide-menu a:hover {
-            color: var(--main-color);
+            background: var(--main-color);
+            transform: translateX(10px);
+        }
+
+        .slide-background {
+            background-size: cover !important;
+            background-position: center !important;
+            opacity: 0.15;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .team-member {
+            display: inline-block;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="menu-title">Menu</div>
+    <div class="menu-title">📋 MENU</div>
     <div id="slide-menu"></div>
     
     <div class="reveal">
         <div class="slides">
             <!-- Introduzione -->
-            <section data-menu-title="Home" class="title-slide">
-                <h1>ShoppingTogether</h1>
+            <section data-menu-title="Home" class="title-slide" data-background="linear-gradient(45deg, #1a472a, #2d5a27)">
+                <h1>SHOPPINGTOGETHER</h1>
                 <h3>La Rivoluzione degli Acquisti di Gruppo</h3>
                 <p style="color: var(--accent-color);">2025</p>
             </section>
 
             <!-- Il Problema -->
-            <section data-menu-title="Il Problema">
+            <section data-menu-title="Il Problema" data-background="linear-gradient(45deg, #8b0000, #800000)">
                 <section>
-                    <h2>Il Problema</h2>
+                    <h2>❌ Il Problema</h2>
                     <p>Gli acquisti online tradizionali presentano diverse limitazioni:</p>
                 </section>
                 <section>
-                    <h3>Prezzi Elevati</h3>
+                    <h3>💰 Prezzi Elevati</h3>
                     <ul>
                         <li>Acquisti individuali costosi</li>
                         <li>Nessun vantaggio di scala</li>
@@ -142,7 +203,7 @@
                     </ul>
                 </section>
                 <section>
-                    <h3>Mancanza di Garanzie</h3>
+                    <h3>⚠️ Mancanza di Garanzie</h3>
                     <ul>
                         <li>Qualità incerta dei prodotti</li>
                         <li>Difficoltà nei resi</li>
@@ -152,13 +213,13 @@
             </section>
 
             <!-- La Soluzione -->
-            <section data-menu-title="La Soluzione">
+            <section data-menu-title="La Soluzione" data-background="linear-gradient(45deg, #006400, #228B22)">
                 <section>
-                    <h2>La Nostra Soluzione</h2>
+                    <h2>✨ La Nostra Soluzione</h2>
                     <p>ShoppingTogether rivoluziona gli acquisti online</p>
                 </section>
                 <section>
-                    <h3>Acquisti di Gruppo</h3>
+                    <h3>👥 Acquisti di Gruppo</h3>
                     <ul>
                         <li>Prezzi più bassi</li>
                         <li>Maggiore potere d'acquisto</li>
@@ -166,7 +227,7 @@
                     </ul>
                 </section>
                 <section>
-                    <h3>Garanzie Complete</h3>
+                    <h3>🛡️ Garanzie Complete</h3>
                     <ul>
                         <li>Prodotti certificati</li>
                         <li>Resi facilitati</li>
@@ -176,13 +237,13 @@
             </section>
 
             <!-- Come Funziona -->
-            <section data-menu-title="Come Funziona">
+            <section data-menu-title="Come Funziona" data-background="linear-gradient(45deg, #00008B, #0000CD)">
                 <section>
-                    <h2>Come Funziona?</h2>
+                    <h2>⚙️ Come Funziona?</h2>
                     <p>Un processo semplice e trasparente</p>
                 </section>
                 <section>
-                    <h3>1. Fase di Riserva</h3>
+                    <h3>🎯 1. Fase di Riserva</h3>
                     <ul>
                         <li>Gratuita e senza impegno</li>
                         <li>Obiettivo 50% per il countdown</li>
@@ -190,7 +251,7 @@
                     </ul>
                 </section>
                 <section>
-                    <h3>2. Fase di Preordine</h3>
+                    <h3>💎 2. Fase di Preordine</h3>
                     <ul>
                         <li>Priorità per chi ha fatto la riserva</li>
                         <li>Prezzo dinamico</li>
@@ -198,7 +259,7 @@
                     </ul>
                 </section>
                 <section>
-                    <h3>3. Consegna e Supporto</h3>
+                    <h3>📦 3. Consegna e Supporto</h3>
                     <ul>
                         <li>Logistica professionale</li>
                         <li>Tracking completo</li>
@@ -206,6 +267,62 @@
                     </ul>
                 </section>
             </section>
+
+            <!-- Vantaggi -->
+            <section data-menu-title="Vantaggi" data-background="linear-gradient(45deg, #4B0082, #8A2BE2)">
+                <section>
+                    <h2>🌟 I Vantaggi</h2>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h3>💰 Risparmio</h3>
+                            <p>Fino al 50% di sconto</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>🤝 Comunità</h3>
+                            <p>Acquisti condivisi</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>✨ Qualità</h3>
+                            <p>Prodotti certificati</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>🛡️ Sicurezza</h3>
+                            <p>Garanzia totale</p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Il Team -->
+            <section data-menu-title="Il Team" data-background="linear-gradient(45deg, #2F4F4F, #696969)">
+                <h2>👥 Il Nostro Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <h3>👨‍💼 Marco Rossi</h3>
+                        <p>CEO & Founder</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>👩‍💼 Laura Bianchi</h3>
+                        <p>COO</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>👨‍💻 Paolo Verdi</h3>
+                        <p>CTO</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contatti -->
+            <section data-menu-title="Contatti" data-background="linear-gradient(45deg, #191970, #000080)">
+                <h2>📱 Contattaci</h2>
+                <ul style="list-style: none;">
+                    <li>📧 Email: info@shoppingtogether.com</li>
+                    <li>📱 Tel: +39 123 456 7890</li>
+                    <li>🌐 Web: www.shoppingtogether.com</li>
+                    <li>📍 Sede: Milano, Italia</li>
+                </ul>
+            </section>
+
         </div>
     </div>
 
@@ -228,6 +345,8 @@
             keyboard: true,
             overview: true,
             touch: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
             plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown ]
         });
 
@@ -248,11 +367,17 @@
             menu.classList.toggle('active');
         });
         
-        // Nascondi il menu quando si fa clic su un link
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('active');
             });
+        });
+
+        // Nascondi il menu quando si fa clic fuori
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !menuTitle.contains(e.target)) {
+                menu.classList.remove('active');
+            }
         });
     </script>
 </body>
