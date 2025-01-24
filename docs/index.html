@@ -28,6 +28,13 @@
 
         .reveal {
             height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        .reveal .slides {
+            height: 100%;
+            width: 100%;
         }
 
         .reveal .slides section {
@@ -48,9 +55,12 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100% !important;
+            width: 100% !important;
             text-align: center;
             background: linear-gradient(135deg, #1a472a 0%, #2e7d32 100%);
+            padding: 20px !important;
+            box-sizing: border-box;
         }
 
         .title-slide h1 {
@@ -138,12 +148,18 @@
         @media screen and (max-width: 768px) {
             .reveal .slides section {
                 padding: 10px;
-                min-height: 100vh;
-                height: auto;
+                height: 100vh !important;
+                min-height: -webkit-fill-available;
             }
 
             .reveal {
                 font-size: 14px;
+            }
+
+            .title-slide {
+                padding: 10px !important;
+                height: 100vh !important;
+                min-height: -webkit-fill-available;
             }
 
             .title-slide h1 {
@@ -157,6 +173,19 @@
                 padding: 10px;
                 margin: 10px 0;
             }
+
+            .reveal .controls {
+                right: 10px !important;
+                bottom: 10px !important;
+            }
+
+            .reveal .controls .navigate-left,
+            .reveal .controls .navigate-right {
+                width: 32px !important;
+                height: 32px !important;
+                padding: 6px !important;
+                font-size: 16px !important;
+            }
         }
 
         @media screen and (max-width: 480px) {
@@ -166,6 +195,10 @@
 
             .reveal {
                 font-size: 12px;
+            }
+
+            .title-slide {
+                padding: 8px !important;
             }
 
             .title-slide h1 {
@@ -178,6 +211,19 @@
                 font-size: 5vw;
                 padding: 8px;
                 margin: 8px 0;
+            }
+
+            .reveal .controls {
+                right: 8px !important;
+                bottom: 8px !important;
+            }
+
+            .reveal .controls .navigate-left,
+            .reveal .controls .navigate-right {
+                width: 28px !important;
+                height: 28px !important;
+                padding: 4px !important;
+                font-size: 14px !important;
             }
         }
 
@@ -450,6 +496,44 @@
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/search/search.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
     <script>
+        // Gestione del menu e delle sezioni
+        function initializeMenu() {
+            const menu = document.getElementById('slide-menu');
+            const menuTitle = document.querySelector('.menu-title');
+            const slides = document.querySelectorAll('.slides section[data-menu-title]');
+            
+            // Pulisci il menu
+            menu.innerHTML = '';
+            
+            // Aggiungi le sezioni al menu
+            slides.forEach((slide, index) => {
+                const title = slide.getAttribute('data-menu-title');
+                const link = document.createElement('a');
+                link.textContent = title;
+                link.href = '#/' + index;
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    Reveal.slide(index);
+                    menu.classList.remove('active');
+                });
+                menu.appendChild(link);
+            });
+
+            // Gestione click sul menu
+            menuTitle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                menu.classList.toggle('active');
+            });
+
+            // Chiudi menu quando si clicca fuori
+            document.addEventListener('click', (e) => {
+                if (!menu.contains(e.target) && !menuTitle.contains(e.target)) {
+                    menu.classList.remove('active');
+                }
+            });
+        }
+
         Reveal.initialize({
             hash: true,
             center: true,
@@ -468,8 +552,13 @@
             margin: 0,
             minScale: 0.2,
             maxScale: 1.0,
-            mobileViewDistance: 3
+            mobileViewDistance: 3,
+            disableLayout: false,
+            embedded: false
         });
+
+        // Inizializza il menu dopo che Reveal è pronto
+        Reveal.addEventListener('ready', initializeMenu);
 
         // Gestione delle frecce
         function updateControls() {
@@ -495,32 +584,6 @@
 
         Reveal.addEventListener('ready', updateControls);
         Reveal.addEventListener('slidechanged', updateControls);
-
-        // Gestione del menu
-        const menuTitle = document.querySelector('.menu-title');
-        const menu = document.getElementById('slide-menu');
-        
-        if (menuTitle && menu) {
-            menuTitle.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                menu.classList.toggle('active');
-            });
-
-            // Chiudi menu quando si clicca fuori
-            document.addEventListener('click', (e) => {
-                if (!menu.contains(e.target) && !menuTitle.contains(e.target)) {
-                    menu.classList.remove('active');
-                }
-            });
-
-            // Chiudi menu quando si clicca su un link
-            menu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menu.classList.remove('active');
-                });
-            });
-        }
     </script>
 </body>
 </html>
