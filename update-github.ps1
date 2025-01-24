@@ -23,9 +23,15 @@ try {
     Write-Host "Creando il commit..." -ForegroundColor Cyan
     git commit -m $CommitMessage
     
-    # Push
+    # Push (con setup del branch upstream se necessario)
     Write-Host "Pushing su GitHub..." -ForegroundColor Cyan
-    git push
+    $pushResult = git push 2>&1
+    if ($LASTEXITCODE -ne 0 -and $pushResult -like "*no upstream branch*") {
+        Write-Host "Configurando il branch upstream..." -ForegroundColor Yellow
+        git push --set-upstream origin main
+    } else {
+        git push
+    }
     
     Write-Host "Completato!" -ForegroundColor Green
     
