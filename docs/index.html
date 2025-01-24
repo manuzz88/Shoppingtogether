@@ -33,6 +33,14 @@
         .reveal .slides section {
             padding: 20px;
             box-sizing: border-box;
+            height: 100vh;
+            width: 100vw;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .title-slide {
@@ -128,54 +136,159 @@
         }
 
         @media screen and (max-width: 768px) {
+            .reveal .slides section {
+                padding: 10px;
+                min-height: 100vh;
+                height: auto;
+            }
+
+            .reveal {
+                font-size: 14px;
+            }
+
             .title-slide h1 {
-                font-size: 10vw;
-                padding: 15px;
+                font-size: 8vw;
+                padding: 10px;
+                margin-bottom: 20px;
             }
 
             .title-slide h3 {
                 font-size: 4vw;
                 padding: 10px;
-            }
-
-            .reveal .controls {
-                right: 15px !important;
-                bottom: 15px !important;
-                gap: 8px !important;
-            }
-
-            .reveal .controls .navigate-left,
-            .reveal .controls .navigate-right {
-                width: 40px !important;
-                height: 40px !important;
-                padding: 8px !important;
-                font-size: 20px !important;
+                margin: 10px 0;
             }
         }
 
         @media screen and (max-width: 480px) {
+            .reveal .slides section {
+                padding: 8px;
+            }
+
+            .reveal {
+                font-size: 12px;
+            }
+
             .title-slide h1 {
-                font-size: 12vw;
-                padding: 10px;
+                font-size: 10vw;
+                padding: 8px;
+                margin-bottom: 15px;
             }
 
             .title-slide h3 {
                 font-size: 5vw;
                 padding: 8px;
+                margin: 8px 0;
+            }
+        }
+
+        /* Stili per il menu */
+        .menu-title {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            color: var(--text-color);
+            font-size: 24px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            background: rgba(0,0,0,0.8);
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 2px solid var(--accent-color);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .menu-title:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        
+        #slide-menu {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            z-index: 9999;
+            background: rgba(0,0,0,0.9);
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid var(--accent-color);
+            display: none;
+            min-width: 280px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        
+        #slide-menu.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        #slide-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            padding: 12px 20px;
+            font-size: 18px;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 8px 0;
+        }
+        
+        #slide-menu a:hover {
+            background: var(--accent-color);
+            transform: translateX(10px);
+            padding-left: 25px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-title {
+                top: 15px;
+                left: 15px;
+                font-size: 20px;
+                padding: 10px 20px;
+                min-width: 80px;
             }
 
-            .reveal .controls {
-                right: 10px !important;
-                bottom: 10px !important;
-                gap: 6px !important;
+            #slide-menu {
+                top: 70px;
+                left: 15px;
+                min-width: 250px;
+                padding: 12px;
             }
 
-            .reveal .controls .navigate-left,
-            .reveal .controls .navigate-right {
-                width: 36px !important;
-                height: 36px !important;
-                padding: 6px !important;
-                font-size: 18px !important;
+            #slide-menu a {
+                font-size: 16px;
+                padding: 10px 16px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .menu-title {
+                top: 10px;
+                left: 10px;
+                font-size: 18px;
+                padding: 8px 16px;
+            }
+
+            #slide-menu {
+                top: 60px;
+                left: 10px;
+                min-width: 220px;
+                padding: 10px;
+            }
+
+            #slide-menu a {
+                font-size: 15px;
+                padding: 8px 14px;
             }
         }
     </style>
@@ -351,7 +464,11 @@
             backgroundTransition: 'fade',
             plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown ],
             width: "100%",
-            height: "100%"
+            height: "100%",
+            margin: 0,
+            minScale: 0.2,
+            maxScale: 1.0,
+            mobileViewDistance: 3
         });
 
         // Gestione delle frecce
@@ -378,6 +495,32 @@
 
         Reveal.addEventListener('ready', updateControls);
         Reveal.addEventListener('slidechanged', updateControls);
+
+        // Gestione del menu
+        const menuTitle = document.querySelector('.menu-title');
+        const menu = document.getElementById('slide-menu');
+        
+        if (menuTitle && menu) {
+            menuTitle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                menu.classList.toggle('active');
+            });
+
+            // Chiudi menu quando si clicca fuori
+            document.addEventListener('click', (e) => {
+                if (!menu.contains(e.target) && !menuTitle.contains(e.target)) {
+                    menu.classList.remove('active');
+                }
+            });
+
+            // Chiudi menu quando si clicca su un link
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.remove('active');
+                });
+            });
+        }
     </script>
 </body>
 </html>
