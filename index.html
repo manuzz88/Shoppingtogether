@@ -11,28 +11,30 @@
 <body>
     <div class="reveal">
         <div class="slides">
-            <section data-markdown="slides/01-intro.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
-            <section data-markdown="slides/02-problema.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
-            <section data-markdown="slides/03-soluzione.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
-            <section data-markdown="slides/04-come-funziona.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
-            <section data-markdown="slides/05-casi-di-successo.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
-            <section data-markdown="slides/06-il-team.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
-            <section data-markdown="slides/07-vantaggi.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
-            <section data-markdown="slides/08-preordine.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
-            <section data-markdown="slides/09-categorie.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
-            <section data-markdown="slides/10-selezione-prodotti.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
-            <section data-markdown="slides/11-qualita.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
-            <section data-markdown="slides/12-riserva.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/01-intro.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/02-problema.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/03-soluzione.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/04-come-funziona.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/05-casi-di-successo.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/06-il-team.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/07-vantaggi.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/08-preordine.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/09-categorie.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/10-selezione-prodotti.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/11-qualita.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+            <section data-markdown="presentations/slides/12-riserva.html" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
     <script>
         Reveal.initialize({
             hash: true,
             controls: true,
             progress: true,
             center: true,
-            transition: 'slide'
+            transition: 'slide',
+            plugins: [ RevealMarkdown ]
         });
     </script>
 </body>
