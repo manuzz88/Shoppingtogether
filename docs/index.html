@@ -6,35 +6,129 @@
     <title>ShoppingTogether - La Rivoluzione degli Acquisti di Gruppo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/night.css">
     <style>
+        :root {
+            --main-color: #4CAF50;
+            --accent-color: #FF5722;
+            --text-color: #FFFFFF;
+        }
+        
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
             overflow: hidden;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
         }
+        
         .reveal {
             height: 100vh;
             position: relative;
         }
-        .slides {
-            height: 100%;
+        
+        .reveal h1 {
+            color: var(--main-color);
+            text-transform: uppercase;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .reveal h2 {
+            color: var(--accent-color);
+            font-size: 1.8em;
+            margin-bottom: 0.5em;
+        }
+        
+        .reveal h3 {
+            color: var(--text-color);
+            font-size: 1.4em;
+        }
+        
+        .reveal ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .reveal li {
+            margin: 0.5em 0;
+            padding-left: 1.5em;
+            position: relative;
+        }
+        
+        .reveal li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--main-color);
+        }
+        
+        .reveal .progress {
+            color: var(--main-color);
+        }
+        
+        .reveal .controls {
+            color: var(--accent-color);
+        }
+        
+        .slide-background {
+            background-size: cover !important;
+            background-position: center !important;
+            opacity: 0.1;
+        }
+        
+        .menu-title {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            color: var(--text-color);
+            font-size: 0.8em;
+        }
+        
+        #slide-menu {
+            position: fixed;
+            top: 50px;
+            left: 10px;
+            z-index: 1000;
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        #slide-menu.active {
+            display: block;
+        }
+        
+        #slide-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            padding: 5px;
+        }
+        
+        #slide-menu a:hover {
+            color: var(--main-color);
         }
     </style>
 </head>
 <body>
+    <div class="menu-title">Menu</div>
+    <div id="slide-menu"></div>
+    
     <div class="reveal">
         <div class="slides">
             <!-- Introduzione -->
-            <section>
+            <section data-menu-title="Home" class="title-slide">
                 <h1>ShoppingTogether</h1>
                 <h3>La Rivoluzione degli Acquisti di Gruppo</h3>
-                <p>2025</p>
+                <p style="color: var(--accent-color);">2025</p>
             </section>
 
             <!-- Il Problema -->
-            <section>
+            <section data-menu-title="Il Problema">
                 <section>
                     <h2>Il Problema</h2>
                     <p>Gli acquisti online tradizionali presentano diverse limitazioni:</p>
@@ -58,7 +152,7 @@
             </section>
 
             <!-- La Soluzione -->
-            <section>
+            <section data-menu-title="La Soluzione">
                 <section>
                     <h2>La Nostra Soluzione</h2>
                     <p>ShoppingTogether rivoluziona gli acquisti online</p>
@@ -82,7 +176,7 @@
             </section>
 
             <!-- Come Funziona -->
-            <section>
+            <section data-menu-title="Come Funziona">
                 <section>
                     <h2>Come Funziona?</h2>
                     <p>Un processo semplice e trasparente</p>
@@ -135,6 +229,30 @@
             overview: true,
             touch: true,
             plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown ]
+        });
+
+        // Creazione del menu di navigazione
+        const menu = document.getElementById('slide-menu');
+        const menuTitle = document.querySelector('.menu-title');
+        const slides = document.querySelectorAll('section[data-menu-title]');
+        
+        slides.forEach((slide, index) => {
+            const title = slide.getAttribute('data-menu-title');
+            const link = document.createElement('a');
+            link.textContent = title;
+            link.href = '#/' + index;
+            menu.appendChild(link);
+        });
+        
+        menuTitle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+        
+        // Nascondi il menu quando si fa clic su un link
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+            });
         });
     </script>
 </body>
