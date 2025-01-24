@@ -221,6 +221,105 @@
             transform: translateX(10px);
             padding-left: 25px;
         }
+
+        .reveal .controls {
+            color: var(--accent-color);
+            z-index: 1000;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .reveal .controls button {
+            color: var(--accent-color) !important;
+            background: rgba(0,0,0,0.6);
+            width: 40px !important;
+            height: 40px !important;
+            padding: 10px !important;
+            border-radius: 50% !important;
+            transition: all 0.3s ease;
+        }
+
+        .reveal .controls button:hover {
+            background: var(--main-color) !important;
+            color: white !important;
+            transform: scale(1.1);
+        }
+
+        /* Stili specifici per mobile */
+        @media screen and (max-width: 768px) {
+            .reveal .controls {
+                bottom: 10px !important;
+                right: 10px !important;
+            }
+
+            .reveal .controls button {
+                width: 50px !important;
+                height: 50px !important;
+                padding: 15px !important;
+                opacity: 0.9 !important;
+            }
+
+            .menu-title {
+                top: 10px;
+                left: 10px;
+                font-size: 1.2em;
+                padding: 8px 15px;
+            }
+
+            #slide-menu {
+                top: 60px;
+                left: 10px;
+                min-width: 200px;
+            }
+
+            .title-slide h1 {
+                font-size: 8vw;
+                padding: 0 20px;
+            }
+
+            .reveal h2 {
+                font-size: 6vw;
+                padding: 0 15px;
+            }
+
+            .reveal h3 {
+                font-size: 5vw;
+                padding: 0 15px;
+            }
+
+            .reveal li {
+                font-size: 4vw;
+                padding: 0 20px 0 30px;
+            }
+
+            .reveal .slides section {
+                padding: 20px 0;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                width: 90%;
+                gap: 15px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                width: 90%;
+            }
+        }
+
+        /* Stili per schermi molto piccoli */
+        @media screen and (max-width: 480px) {
+            .reveal .controls button {
+                width: 60px !important;
+                height: 60px !important;
+                padding: 18px !important;
+            }
+
+            .title-slide h1 {
+                font-size: 10vw;
+            }
+        }
     </style>
 </head>
 <body>
